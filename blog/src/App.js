@@ -10,6 +10,8 @@ function App() {
   let [modal, modal_change] = useState(false);
   let [count, count_func] = useState([0,0,0]);
   let [post_index, index_change] = useState(-1);
+  
+  let [input, input_change] = useState('');
 
   let title_style = { fontSize: '30px' };
   
@@ -36,14 +38,14 @@ function App() {
   return (
     <div className="App">
       <div className="black-nav">
-        <div style = {title_style}>개발 blog</div>
+        <div style = {title_style}>히진이의 개발 blog</div>
       </div>
-      <button onClick={ sort_posts }> 글 정렬 </button>
+      {/* <button onClick={ sort_posts }> 글 정렬 </button> */}
 
       {
         titles.map(function(a,ind){
           return(
-            <div className="list">
+            <div className="list" key={ind}>
               <h3> 
                 <span onClick={() => { post_index_change(ind) } }>{ a }</span> 
                 <span onClick={() => { count_change(ind) }}>👍🏻</span>{ count[ind] }
@@ -54,6 +56,11 @@ function App() {
           )
         })
       }
+
+      <div className='publish'>
+        <input onChange={ (e) => {input_change(e.target.value)} }/>
+        <button onClick={ () => {this.setState()} }>저장</button>
+      </div>
 
       {
         post_index >= 0
