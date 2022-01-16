@@ -35,6 +35,15 @@ function App() {
     }
   }
 
+  function add_post(newTitle){
+    var newTitleArray = [...titles];
+    var newLikeArray = [...count];
+    newTitleArray.push(newTitle);
+    newLikeArray.push(0);
+    title_func(newTitleArray);
+    count_func(newLikeArray);
+  }
+
   return (
     <div className="App">
       <div className="black-nav">
@@ -58,8 +67,10 @@ function App() {
       }
 
       <div className='publish'>
-        <input onChange={ (e) => {input_change(e.target.value)} }/>
-        <button onClick={ () => {this.setState()} }>저장</button>
+        <input onChange={ (e) => {
+          input_change(e.target.value);
+          } }/>
+        <button onClick={ () => { add_post(input) } }>저장</button>
       </div>
 
       {
