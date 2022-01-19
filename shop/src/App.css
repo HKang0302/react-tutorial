@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.Jumbotron {
+  background-image: url('./background.jpeg');
+  background-size: cover;
+  color: white;
+  background-color: rgb(236, 236, 236);
+  padding: 20px;
+}
