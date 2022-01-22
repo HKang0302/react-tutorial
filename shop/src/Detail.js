@@ -40,12 +40,12 @@ function Detail(props){
     return (
         <div className="container">
             <Box>
-                <Title className='red'>
-                    상세페이지
+                <Title>
+                    Detail
                 </Title>
             </Box>
 
-            <input onChange={(e)=>{input_change(e.target.value)}}/>
+            {/* <input onChange={(e)=>{input_change(e.target.value)}}/> */}
 
             {
                 show_alert?
@@ -54,22 +54,34 @@ function Detail(props){
             }
             <div className="row">
                 <div className="col-md-6">
-                    <img src={found_item.img} width="100%" />
+                    <img src={ 'https://codingapple1.github.io/shop/shoes'+(found_item.id+1)+'.jpg'} width="100%" />
                 </div>
                 <div className="col-md-6 mt-4">
                     <h4 className="pt-5">{found_item.title}</h4>
                     <p>{found_item.content}</p>
                     <p>{found_item.price}원</p>
+                    <Info item_num = {props.item_num[found_item.id]}/>
+
                     <Button variant="outline-dark" onClick = {()=>{
                         history.goBack();
                     }}>뒤로가기</Button>
                     <Button variant="outline-dark" onClick = {()=>{
                         history.push('/');
                     }}>홈으로가기</Button>
-                    <button className="btn btn-danger">주문하기</button> 
+                    <button className="btn btn-danger" onClick={()=>{
+                        let new_item_num = [...props.item_num];
+                        new_item_num[found_item.id] -= 1;
+                        props.item_num_status(new_item_num);
+                    }}>주문하기</button> 
                 </div>
             </div>
         </div> 
+    )
+}
+
+function Info(props){
+    return(
+        <p>재고: {props.item_num}개</p>
     )
 }
 
